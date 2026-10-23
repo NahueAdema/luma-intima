@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: nahuel/luma-intima
   branch: main
   identity_url: /.netlify/identity
   gateway_url: /.netlify/git/github
