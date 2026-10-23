@@ -1,0 +1,254 @@
+<section class="destacados">
+  <div class="destacados-container">
+    <div class="destacados-header">
+      <div class="destacados-title-group">
+        <h2 class="destacados-title">Más Vendidos</h2>
+        <p class="destacados-subtitle">LOS FAVORITOS DE NUESTRAS CLIENTAS</p>
+        <div class="destacados-decoration">
+          <span class="destacados-line"></span>
+          <i data-lucide="heart" class="destacados-heart"></i>
+          <span class="destacados-line"></span>
+        </div>
+      </div>
+      <a href="/tienda/mas-vendidos" class="ver-todas-btn-destacados">
+        VER TODOS
+        <i data-lucide="arrow-right" class="ver-todas-arrow"></i>
+      </a>
+    </div>
+
+    <div class="products-grid-destacados">
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=1974&auto=format&fit=crop" 
+            alt="Body negro elegante" 
+            class="product-image"
+          />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Body encaje premium</h3>
+          <p class="product-price">$32.990</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=2030&auto=format&fit=crop" 
+            alt="Conjunto rojo" 
+            class="product-image"
+          />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Conjunto satén rojo</h3>
+          <p class="product-price">$29.990</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=2073&auto=format&fit=crop" 
+            alt="Tanga encaje" 
+            class="product-image"
+          />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Conjunto minimalista</h3>
+          <p class="product-price">$27.990</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1974&auto=format&fit=crop" 
+            alt="Body transparente" 
+            class="product-image"
+          />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Body tul delicado</h3>
+          <p class="product-price">$31.990</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .destacados {
+    background-color: var(--color-warm-white);
+    padding: 4rem 0;
+  }
+
+  .destacados-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .destacados-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    gap: 2rem;
+  }
+
+  .destacados-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .destacados-title {
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--color-soft-black);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  .destacados-subtitle {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-neutral-gray);
+    font-weight: 400;
+  }
+
+  .destacados-decoration {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0.25rem;
+  }
+
+  .destacados-line {
+    width: 30px;
+    height: 1px;
+    background-color: var(--color-soft-black);
+  }
+
+  .destacados-heart {
+    width: 12px;
+    height: 12px;
+    color: var(--color-soft-black);
+  }
+
+  .ver-todas-btn-destacados {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    background-color: transparent;
+    color: var(--color-soft-black);
+    padding: 10px 26px;
+    border: 1px solid var(--color-soft-black);
+    border-radius: 50px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    margin-top: 0.75rem;
+  }
+
+  .ver-todas-btn-destacados:hover {
+    background-color: var(--color-soft-black);
+    color: #ffffff;
+  }
+
+  .products-grid-destacados {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .product-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background-color: #f0f0f0;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .product-image {
+    transform: scale(1.05);
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .product-name {
+    font-size: 13px;
+    color: var(--color-soft-black);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .product-price {
+    font-size: 14px;
+    color: var(--color-soft-black);
+    font-weight: 500;
+  }
+
+  @media (max-width: 968px) {
+    .destacados-container {
+      padding: 0 1.5rem;
+    }
+    
+    .products-grid-destacados {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .destacados {
+      padding: 3rem 0;
+    }
+    
+    .destacados-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    
+    .destacados-title {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .destacados-container {
+      padding: 0 1rem;
+    }
+    
+    .products-grid-destacados {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

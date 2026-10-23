@@ -1,0 +1,511 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InfoBar from '../components/InfoBar.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const productos = await getCollection('productos');
+---
+
+<Layout>
+  <InfoBar />
+  <Header />
+  
+  <section class="tienda-header">
+    <div class="tienda-header-container">
+      <h1 class="tienda-titulo">Tienda</h1>
+      <p class="tienda-subtitulo">Descubrí toda nuestra colección de lencería y sexshop</p>
+      <div class="tienda-breadcrumb">
+        <a href="/" class="breadcrumb-link">Inicio</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Tienda</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="tienda-filtros">
+    <div class="filtros-container">
+      <div class="filtros-categorias">
+        <button class="filtro-btn active">Todos</button>
+        <button class="filtro-btn">Conjuntos</button>
+        <button class="filtro-btn">Bombachas</button>
+        <button class="filtro-btn">Bodys</button>
+        <button class="filtro-btn">Ropa Deportiva</button>
+        <button class="filtro-btn">Sexshop</button>
+        <button class="filtro-btn">Medias</button>
+        <button class="filtro-btn">Boxers</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="tienda-productos">
+    <div class="productos-container">
+      <div class="productos-header">
+        <p class="productos-count">{productos.length} productos</p>
+        <select class="orden-select">
+          <option>Más recientes</option>
+          <option>Precio: menor a mayor</option>
+          <option>Precio: mayor a menor</option>
+        </select>
+      </div>
+
+      <div class="productos-grid">
+        {productos.length > 0 ? productos.map((producto) => (
+          <article class="producto-card">
+            <div class="producto-image-wrapper">
+              {producto.data.nuevo && <span class="producto-badge">NUEVO</span>}
+              {producto.data.destacado && <span class="producto-badge destacado">DESTACADO</span>}
+              <img 
+                src={producto.data.imagenes[0] || 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=1976&auto=format&fit=crop'} 
+                alt={producto.data.titulo} 
+                class="producto-image"
+              />
+              <button class="producto-quickview">Vista Rápida</button>
+            </div>
+            <div class="producto-info">
+              <p class="producto-categoria">{producto.data.categoria.replace('-', ' ')}</p>
+              <h3 class="producto-nombre">{producto.data.titulo}</h3>
+              <div class="producto-precios">
+                {producto.data.precioAnterior && (
+                  <span class="precio-anterior">${producto.data.precioAnterior.toLocaleString('es-AR')}</span>
+                )}
+                <span class="precio-actual">${producto.data.precio.toLocaleString('es-AR')}</span>
+              </div>
+              {producto.data.talles.length > 0 && (
+                <p class="producto-talles">Talles: {producto.data.talles.join(', ')}</p>
+              )}
+            </div>
+          </article>
+        )) : (
+          <>
+            <article class="producto-card">
+              <div class="producto-image-wrapper">
+                <span class="producto-badge">NUEVO</span>
+                <img 
+                  src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=1976&auto=format&fit=crop" 
+                  alt="Conjunto encaje negro" 
+                  class="producto-image"
+                />
+                <button class="producto-quickview">Vista Rápida</button>
+              </div>
+              <div class="producto-info">
+                <p class="producto-categoria">conjuntos</p>
+                <h3 class="producto-nombre">Conjunto encaje negro</h3>
+                <div class="producto-precios">
+                  <span class="precio-actual">$24.990</span>
+                </div>
+                <p class="producto-talles">Talles: S, M, L, XL</p>
+              </div>
+            </article>
+
+            <article class="producto-card">
+              <div class="producto-image-wrapper">
+                <span class="producto-badge destacado">DESTACADO</span>
+                <img 
+                  src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=1974&auto=format&fit=crop" 
+                  alt="Body encaje premium" 
+                  class="producto-image"
+                />
+                <button class="producto-quickview">Vista Rápida</button>
+              </div>
+              <div class="producto-info">
+                <p class="producto-categoria">bodys</p>
+                <h3 class="producto-nombre">Body encaje premium</h3>
+                <div class="producto-precios">
+                  <span class="precio-anterior">$39.990</span>
+                  <span class="precio-actual">$32.990</span>
+                </div>
+                <p class="producto-talles">Talles: S, M, L, XL</p>
+              </div>
+            </article>
+
+            <article class="producto-card">
+              <div class="producto-image-wrapper">
+                <img 
+                  src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?q=80&w=1974&auto=format&fit=crop" 
+                  alt="Conjunto satén rosa" 
+                  class="producto-image"
+                />
+                <button class="producto-quickview">Vista Rápida</button>
+              </div>
+              <div class="producto-info">
+                <p class="producto-categoria">conjuntos</p>
+                <h3 class="producto-nombre">Conjunto satén rosa</h3>
+                <div class="producto-precios">
+                  <span class="precio-actual">$26.990</span>
+                </div>
+                <p class="producto-talles">Talles: S, M, L</p>
+              </div>
+            </article>
+
+            <article class="producto-card">
+              <div class="producto-image-wrapper">
+                <img 
+                  src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=1976&auto=format&fit=crop" 
+                  alt="Body encaje menta" 
+                  class="producto-image"
+                />
+                <button class="producto-quickview">Vista Rápida</button>
+              </div>
+              <div class="producto-info">
+                <p class="producto-categoria">bodys</p>
+                <h3 class="producto-nombre">Body encaje menta</h3>
+                <div class="producto-precios">
+                  <span class="precio-actual">$28.990</span>
+                </div>
+                <p class="producto-talles">Talles: M, L, XL</p>
+              </div>
+            </article>
+
+            <article class="producto-card">
+              <div class="producto-image-wrapper">
+                <img 
+                  src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=2030&auto=format&fit=crop" 
+                  alt="Conjunto satén rojo" 
+                  class="producto-image"
+                />
+                <button class="producto-quickview">Vista Rápida</button>
+              </div>
+              <div class="producto-info">
+                <p class="producto-categoria">conjuntos</p>
+                <h3 class="producto-nombre">Conjunto satén rojo</h3>
+                <div class="producto-precios">
+                  <span class="precio-actual">$29.990</span>
+                </div>
+                <p class="producto-talles">Talles: S, M, L</p>
+              </div>
+            </article>
+
+            <article class="producto-card">
+              <div class="producto-image-wrapper">
+                <img 
+                  src="https://images.unsplash.com/photo-1566479179817-c0fac1d2c6f6?q=80&w=1974&auto=format&fit=crop" 
+                  alt="Conjunto tiras delicadas" 
+                  class="producto-image"
+                />
+                <button class="producto-quickview">Vista Rápida</button>
+              </div>
+              <div class="producto-info">
+                <p class="producto-categoria">conjuntos</p>
+                <h3 class="producto-nombre">Conjunto tiras delicadas</h3>
+                <div class="producto-precios">
+                  <span class="precio-actual">$25.990</span>
+                </div>
+                <p class="producto-talles">Talles: S, M</p>
+              </div>
+            </article>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .tienda-header {
+    background: linear-gradient(135deg, var(--color-mint-light) 0%, var(--color-warm-white) 100%);
+    padding: 4rem 0 3rem;
+    text-align: center;
+  }
+
+  .tienda-header-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .tienda-titulo {
+    font-size: 52px;
+    font-weight: 400;
+    color: var(--color-soft-black);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .tienda-subtitulo {
+    font-size: 14px;
+    color: var(--color-neutral-gray);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .tienda-breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 12px;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-neutral-gray);
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-soft-black);
+  }
+
+  .breadcrumb-separator {
+    color: var(--color-neutral-gray);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-soft-black);
+    font-weight: 500;
+  }
+
+  .tienda-filtros {
+    background-color: var(--color-warm-white);
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(192, 229, 212, 0.5);
+  }
+
+  .filtros-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .filtros-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .filtro-btn {
+    padding: 8px 22px;
+    background-color: transparent;
+    border: 1px solid rgba(23, 26, 24, 0.3);
+    border-radius: 50px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-soft-black);
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .filtro-btn:hover {
+    border-color: var(--color-soft-black);
+  }
+
+  .filtro-btn.active {
+    background-color: var(--color-soft-black);
+    border-color: var(--color-soft-black);
+    color: #ffffff;
+  }
+
+  .tienda-productos {
+    background-color: var(--color-warm-white);
+    padding: 3rem 0 5rem;
+  }
+
+  .productos-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .productos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .productos-count {
+    font-size: 13px;
+    color: var(--color-neutral-gray);
+  }
+
+  .orden-select {
+    padding: 8px 16px;
+    border: 1px solid rgba(23, 26, 24, 0.3);
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-soft-black);
+    background-color: #ffffff;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .producto-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    transition: transform 0.3s ease;
+  }
+
+  .producto-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .producto-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background-color: #f0f0f0;
+  }
+
+  .producto-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: var(--color-mint-primary);
+    color: var(--color-soft-black);
+    padding: 5px 12px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .producto-badge.destacado {
+    background-color: var(--color-soft-black);
+    color: #ffffff;
+  }
+
+  .producto-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .producto-card:hover .producto-image {
+    transform: scale(1.06);
+  }
+
+  .producto-quickview {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--color-soft-black);
+    padding: 8px 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .producto-card:hover .producto-quickview {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .producto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .producto-categoria {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-neutral-gray);
+  }
+
+  .producto-nombre {
+    font-size: 14px;
+    color: var(--color-soft-black);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .producto-precios {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .precio-anterior {
+    font-size: 13px;
+    color: var(--color-neutral-gray);
+    text-decoration: line-through;
+  }
+
+  .precio-actual {
+    font-size: 14px;
+    color: var(--color-soft-black);
+    font-weight: 600;
+  }
+
+  .producto-talles {
+    font-size: 11px;
+    color: var(--color-neutral-gray);
+  }
+
+  @media (max-width: 1100px) {
+    .productos-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 968px) {
+    .productos-container,
+    .filtros-container,
+    .tienda-header-container {
+      padding: 0 1.5rem;
+    }
+    
+    .productos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tienda-titulo {
+      font-size: 42px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .productos-container,
+    .filtros-container,
+    .tienda-header-container {
+      padding: 0 1rem;
+    }
+    
+    .productos-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    
+    .productos-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .tienda-titulo {
+      font-size: 36px;
+    }
+    
+    .filtros-categorias {
+      gap: 0.5rem;
+    }
+    
+    .filtro-btn {
+      font-size: 10px;
+      padding: 7px 16px;
+    }
+  }
+</style>

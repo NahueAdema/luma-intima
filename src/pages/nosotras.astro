@@ -1,0 +1,480 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InfoBar from '../components/InfoBar.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <InfoBar />
+  <Header />
+  
+  <section class="nosotras-hero">
+    <div class="nosotras-hero-container">
+      <div class="nosotras-hero-content">
+        <h1 class="nosotras-hero-titulo">Nosotras</h1>
+        <p class="nosotras-hero-subtitulo">Luma Íntima - Donde la elegancia se encuentra con la sensualidad</p>
+        <div class="nosotras-hero-decoration">
+          <span class="nosotras-hero-line"></span>
+          <i data-lucide="heart" class="nosotras-hero-heart"></i>
+          <span class="nosotras-hero-line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nosotras-historia">
+    <div class="historia-container">
+      <div class="historia-grid">
+        <div class="historia-imagen-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop" 
+            alt="Luma Íntima - Historia" 
+            class="historia-imagen"
+          />
+        </div>
+        <div class="historia-content">
+          <span class="historia-label">Nuestra Historia</span>
+          <h2 class="historia-titulo">Belleza, Elegancia y Confianza</h2>
+          <p class="historia-texto">
+            Luma Íntima nace del deseo de crear un espacio donde cada mujer pueda sentirse libre, segura y hermosa 
+            en su propia intimidad. Creemos que la lencería es mucho más que una prenda, es una forma de amor propio, 
+            de confianza y de celebración de la feminidad.
+          </p>
+          <p class="historia-texto">
+            Nos dedicamos a seleccionar cuidadosamente cada pieza, priorizando la calidad, el confort y el diseño. 
+            Buscamos ese equilibrio perfecto entre sensualidad y elegancia, sin caer en lo vulgar, siempre con delicadeza 
+            y sofisticación.
+          </p>
+          <div class="historia-quote">
+            <p class="quote-text">"Sentirse bien en tu piel es el mayor lujo"</p>
+            <span class="quote-author">- Luma Íntima</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nosotras-valores">
+    <div class="valores-container">
+      <div class="valores-header">
+        <h2 class="valores-titulo">Nuestros Valores</h2>
+        <p class="valores-subtitulo">Lo que nos define</p>
+        <div class="valores-decoration">
+          <span class="valores-line"></span>
+          <i data-lucide="heart" class="valores-heart"></i>
+          <span class="valores-line"></span>
+        </div>
+      </div>
+
+      <div class="valores-grid">
+        <div class="valor-card">
+          <div class="valor-icon-wrapper">
+            <i data-lucide="sparkles" class="valor-icon"></i>
+          </div>
+          <h3 class="valor-titulo">Elegancia</h3>
+          <p class="valor-texto">Diseños delicados y sofisticados que realzan tu belleza natural</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon-wrapper">
+            <i data-lucide="heart" class="valor-icon"></i>
+          </div>
+          <h3 class="valor-titulo">Amor Propio</h3>
+          <p class="valor-texto">Celebramos cada cuerpo, cada forma y cada historia única</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon-wrapper">
+            <i data-lucide="shield-check" class="valor-icon"></i>
+          </div>
+          <h3 class="valor-titulo">Confianza</h3>
+          <p class="valor-texto">Discreción, calidad y atención personalizada en cada compra</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon-wrapper">
+            <i data-lucide="star" class="valor-icon"></i>
+          </div>
+          <h3 class="valor-titulo">Calidad</h3>
+          <p class="valor-texto">Seleccionamos las mejores telas y acabados para tu comodidad</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nosotras-mision">
+    <div class="mision-container">
+      <div class="mision-grid">
+        <div class="mision-content">
+          <span class="mision-label">Nuestra Misión</span>
+          <h2 class="mision-titulo">Crear espacios de intimidad con estilo</h2>
+          <p class="mision-texto">
+            Queremos que cada mujer descubra el placer de sentirse especial, incluso en los momentos más íntimos. 
+            Nuestro objetivo es ofrecer una experiencia de compra única, cuidada y personalizada, donde la elegancia 
+            y la discreción son nuestras prioridades.
+          </p>
+          <p class="mision-texto">
+            En Luma Íntima entendemos que tu intimidad es sagrada, por eso garantizamos total discreción en 
+            nuestros envíos y en toda tu experiencia con nosotros.
+          </p>
+        </div>
+        <div class="mision-imagen-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=2073&auto=format&fit=crop" 
+            alt="Luma Íntima - Misión" 
+            class="mision-imagen"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .nosotras-hero {
+    background: linear-gradient(135deg, var(--color-mint-light) 0%, var(--color-warm-white) 100%);
+    padding: 5rem 0 4rem;
+    text-align: center;
+  }
+
+  .nosotras-hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .nosotras-hero-titulo {
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--color-soft-black);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.875rem;
+    letter-spacing: -0.01em;
+  }
+
+  .nosotras-hero-subtitulo {
+    font-size: 15px;
+    color: var(--color-neutral-gray);
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  .nosotras-hero-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .nosotras-hero-line {
+    width: 50px;
+    height: 1px;
+    background-color: var(--color-soft-black);
+  }
+
+  .nosotras-hero-heart {
+    width: 16px;
+    height: 16px;
+    color: var(--color-soft-black);
+  }
+
+  .nosotras-historia {
+    background-color: var(--color-warm-white);
+    padding: 5rem 0;
+  }
+
+  .historia-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .historia-imagen-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .historia-imagen {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .historia-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .historia-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-neutral-gray);
+    font-weight: 500;
+  }
+
+  .historia-titulo {
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--color-soft-black);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .historia-texto {
+    font-size: 14px;
+    color: var(--color-soft-black);
+    line-height: 1.8;
+  }
+
+  .historia-quote {
+    margin-top: 1rem;
+    padding: 2rem;
+    background-color: var(--color-mint-light);
+    border-left: 3px solid var(--color-mint-primary);
+  }
+
+  .quote-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    color: var(--color-soft-black);
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-author {
+    font-size: 12px;
+    color: var(--color-neutral-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .nosotras-valores {
+    background-color: var(--color-mint-light);
+    padding: 5rem 0;
+  }
+
+  .valores-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .valores-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .valores-titulo {
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--color-soft-black);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .valores-subtitulo {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-neutral-gray);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+
+  .valores-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .valores-line {
+    width: 40px;
+    height: 1px;
+    background-color: var(--color-soft-black);
+  }
+
+  .valores-heart {
+    width: 14px;
+    height: 14px;
+    color: var(--color-soft-black);
+  }
+
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .valor-card {
+    background-color: var(--color-warm-white);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(175, 218, 198, 0.3);
+  }
+
+  .valor-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .valor-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-mint-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .valor-icon {
+    width: 30px;
+    height: 30px;
+    color: var(--color-soft-black);
+  }
+
+  .valor-titulo {
+    font-size: 18px;
+    color: var(--color-soft-black);
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .valor-texto {
+    font-size: 13px;
+    color: var(--color-soft-black);
+    line-height: 1.7;
+  }
+
+  .nosotras-mision {
+    background-color: var(--color-warm-white);
+    padding: 5rem 0;
+  }
+
+  .mision-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .mision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .mision-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .mision-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-neutral-gray);
+    font-weight: 500;
+  }
+
+  .mision-titulo {
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--color-soft-black);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .mision-texto {
+    font-size: 14px;
+    color: var(--color-soft-black);
+    line-height: 1.8;
+  }
+
+  .mision-imagen-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mision-imagen {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media (max-width: 968px) {
+    .historia-grid,
+    .mision-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    
+    .valores-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nosotras-hero-titulo {
+      font-size: 44px;
+    }
+    
+    .historia-titulo,
+    .mision-titulo {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nosotras-hero,
+    .nosotras-historia,
+    .nosotras-valores,
+    .nosotras-mision {
+      padding: 3.5rem 0;
+    }
+    
+    .historia-container,
+    .valores-container,
+    .mision-container,
+    .nosotras-hero-container {
+      padding: 0 1rem;
+    }
+    
+    .nosotras-hero-titulo {
+      font-size: 36px;
+    }
+    
+    .valores-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .historia-imagen,
+    .mision-imagen {
+      height: 320px;
+    }
+    
+    .quote-text {
+      font-size: 22px;
+    }
+  }
+</style>

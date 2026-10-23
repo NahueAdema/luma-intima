@@ -1,0 +1,153 @@
+<section class="benefits">
+  <div class="benefits-container">
+    <div class="benefit-item">
+      <i data-lucide="shield-check" class="benefit-icon"></i>
+      <div class="benefit-text">
+        <h3 class="benefit-title">Comprá con confianza</h3>
+        <p class="benefit-description">Tus datos están seguros</p>
+      </div>
+    </div>
+    
+    <div class="benefit-divider"></div>
+    
+    <div class="benefit-item">
+      <i data-lucide="truck" class="benefit-icon"></i>
+      <div class="benefit-text">
+        <h3 class="benefit-title">Envíos a todo el país</h3>
+        <p class="benefit-description">Con seguimiento</p>
+      </div>
+    </div>
+    
+    <div class="benefit-divider"></div>
+    
+    <div class="benefit-item">
+      <i data-lucide="credit-card" class="benefit-icon"></i>
+      <div class="benefit-text">
+        <h3 class="benefit-title">Medios de pago</h3>
+        <p class="benefit-description">Transferencia, tarjeta y efectivo</p>
+      </div>
+    </div>
+    
+    <div class="benefit-divider"></div>
+    
+    <div class="benefit-item">
+      <i data-lucide="heart" class="benefit-icon"></i>
+      <div class="benefit-text">
+        <h3 class="benefit-title">Atención personalizada</h3>
+        <p class="benefit-description">Siempre que nos necesites</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background-color: var(--color-mint-light);
+    padding: 2rem 0;
+    border-top: 1px solid rgba(192, 229, 212, 0.5);
+    border-bottom: 1px solid rgba(192, 229, 212, 0.5);
+  }
+
+  .benefits-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .benefit-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-soft-black);
+    flex-shrink: 0;
+  }
+
+  .benefit-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .benefit-title {
+    font-size: 12px;
+    color: var(--color-soft-black);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .benefit-description {
+    font-size: 10px;
+    color: var(--color-neutral-gray);
+    line-height: 1.3;
+  }
+
+  .benefit-divider {
+    width: 1px;
+    height: 40px;
+    background-color: var(--color-sage-soft);
+  }
+
+  @media (max-width: 1100px) {
+    .benefits-container {
+      padding: 0 1.5rem;
+      gap: 1rem;
+    }
+    
+    .benefit-title {
+      font-size: 11px;
+    }
+    
+    .benefit-description {
+      font-size: 9px;
+    }
+  }
+
+  @media (max-width: 968px) {
+    .benefits-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 1rem;
+    }
+    
+    .benefit-divider {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .benefits {
+      padding: 1.5rem 0;
+    }
+    
+    .benefits-container {
+      padding: 0 1rem;
+      gap: 1.25rem 0.75rem;
+    }
+    
+    .benefit-item {
+      gap: 0.5rem;
+    }
+    
+    .benefit-icon {
+      width: 22px;
+      height: 22px;
+    }
+    
+    .benefit-title {
+      font-size: 10px;
+    }
+    
+    .benefit-description {
+      font-size: 8px;
+    }
+  }
+</style>

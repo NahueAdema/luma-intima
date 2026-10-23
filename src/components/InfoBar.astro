@@ -1,0 +1,97 @@
+<div class="info-bar">
+  <div class="info-bar-container">
+    <div class="info-item">
+      <i data-lucide="truck" class="info-icon"></i>
+      <span class="info-text">Envíos a todo el país</span>
+    </div>
+    <div class="info-item">
+      <i data-lucide="credit-card" class="info-icon"></i>
+      <span class="info-text">Medios de pago seguros</span>
+    </div>
+    <div class="info-item">
+      <i data-lucide="heart" class="info-icon"></i>
+      <span class="info-text">Tu intimidad, nuestra prioridad</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .info-bar {
+    background-color: var(--color-mint-primary);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(23, 26, 24, 0.1);
+  }
+
+  .info-bar-container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .info-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-soft-black);
+    flex-shrink: 0;
+  }
+
+  .info-text {
+    font-size: 11px;
+    color: var(--color-soft-black);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 968px) {
+    .info-bar-container {
+      padding: 0 1rem;
+      gap: 0.5rem;
+    }
+    
+    .info-text {
+      font-size: 10px;
+    }
+    
+    .info-icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .info-bar {
+      height: 36px;
+    }
+    
+    .info-bar-container {
+      padding: 0 0.75rem;
+    }
+    
+    .info-text {
+      font-size: 9px;
+      letter-spacing: 0.03em;
+    }
+    
+    .info-icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+</style>
