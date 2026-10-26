@@ -10,13 +10,13 @@
           <span class="novedades-line"></span>
         </div>
       </div>
-      <a href="/tienda" class="ver-todas-btn">
+      <a href="/tienda/novedades/" class="ver-todas-btn">
         VER TODAS
         <i data-lucide="arrow-right" class="ver-todas-arrow"></i>
       </a>
     </div>
 
-    <div class="products-grid">
+    <div class="products-grid" id="home-new-products" aria-live="polite">
       <article class="product-card">
         <div class="product-image-wrapper">
           <span class="product-badge">NUEVO</span>
@@ -95,7 +95,7 @@
   </div>
 </section>
 
-<style>
+<style is:global>
   .novedades {
     background-color: var(--color-mint-light);
     padding: 4rem 0;
@@ -197,7 +197,8 @@
   }
 
   .product-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    filter: drop-shadow(0 12px 24px rgba(175, 218, 198, 0.35));
   }
 
   .product-image-wrapper {

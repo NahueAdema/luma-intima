@@ -16,7 +16,7 @@
       </a>
     </div>
 
-    <div class="products-grid-destacados">
+    <div class="products-grid-destacados" id="home-best-products" aria-live="polite">
       <article class="product-card">
         <div class="product-image-wrapper">
           <img 
@@ -76,7 +76,7 @@
   </div>
 </section>
 
-<style>
+<style is:global>
   .destacados {
     background-color: var(--color-warm-white);
     padding: 4rem 0;
@@ -173,7 +173,8 @@
   }
 
   .product-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    filter: drop-shadow(0 12px 24px rgba(175, 218, 198, 0.35));
   }
 
   .product-image-wrapper {

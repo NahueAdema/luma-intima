@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import '../styles/admin.css';
+interface Props { title?: string; active?: string }
+const { title = 'Administración | Luma Íntima', active = 'overview' } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#f6f7f2" />
+  <title>{title}</title>
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="admin-page" data-admin-page={active}>
+  <main class="admin-shell">
+    <header class="admin-topbar">
+      <a class="admin-brand" href="/" aria-label="Luma Íntima, volver al inicio">
+        <span class="brand-seal">L</span><span class="brand-wordmark"><b>Luma</b><small>Í N T I M A</small></span>
+      </a>
+      <div class="topbar-right"><span class="topbar-label"><i></i> ESPACIO PRIVADO</span><a class="store-link" href="/">Ver tienda <span>↗</span></a></div>
+    </header>
+    <div class="admin-dashboard">
+      <aside class="admin-sidebar">
+        <div class="sidebar-caption">MENÚ PRINCIPAL</div>
+        <a class={`sidebar-link ${active === 'overview' ? 'active' : ''}`} href="/admin/"><span class="sidebar-icon">▦</span> Resumen</a>
+        <a class={`sidebar-link ${active === 'productos' ? 'active' : ''}`} href="/admin/productos/"><span class="sidebar-icon">◇</span> Productos</a>
+        <a class={`sidebar-link ${active === 'producto' ? 'active' : ''}`} href="/admin/producto/"><span class="sidebar-icon">＋</span> Nuevo producto</a>
+        <div class="sidebar-caption sidebar-caption-spaced">TU TIENDA</div>
+        <a class="sidebar-link" href="/tienda/"><span class="sidebar-icon">↗</span> Ver catálogo</a>
+        <a class="sidebar-link" href="/tienda/mas-vendidos/"><span class="sidebar-icon">✳</span> Más vendidos</a>
+        <div class="sidebar-note"><span>✳</span><p>Pequeños detalles,<br /><i>grandes momentos.</i></p></div>
+      </aside>
+      <div class="dashboard-main">
+        <slot />
+      </div>
+    </div>
+  </main>
+</body>
+</html>

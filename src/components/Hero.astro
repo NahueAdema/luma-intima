@@ -1,75 +1,163 @@
-<section class="hero">
+---
+const slides = [
+  {
+    image: '/banner%20luma.png',
+    subtitle: 'LENCERÍA & SEXSHOP',
+    title: 'Todo lo que te hace sentir bien',
+    button: 'VER PRODUCTOS',
+    href: '/tienda',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=1976&auto=format&fit=crop',
+    subtitle: 'NOVEDADES',
+    title: 'Nuevas piezas para vos',
+    button: 'VER NOVEDADES',
+    href: '/tienda/novedades/',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=1974&auto=format&fit=crop',
+    subtitle: 'PROMOCIONES',
+    title: 'Ofertas que te enamoran',
+    button: 'VER PROMOCIONES',
+    href: '/tienda/promociones/',
+  },
+];
+---
+<section class="hero" aria-label="Banner principal">
   <div class="hero-container">
-    <button class="hero-arrow hero-arrow-left" aria-label="Anterior">
+    {slides.map((slide, index) => (
+      <article class={`hero-slide ${index === 0 ? 'is-active' : ''}`} data-index={index} aria-hidden={index === 0 ? 'false' : 'true'}>
+        <div class="hero-right">
+          <img src={slide.image} alt={slide.title} class="hero-image" loading={index === 0 ? 'eager' : 'lazy'} />
+        </div>
+        <div class="hero-left">
+          <span class="hero-subtitle">{slide.subtitle}</span>
+          <h1 class="hero-title">{slide.title}</h1>
+          <div class="hero-decoration">
+            <span class="decoration-line"></span>
+            <i data-lucide="heart" class="decoration-heart"></i>
+            <span class="decoration-line"></span>
+          </div>
+          <a href={slide.href} class="hero-button">
+            {slide.button}
+            <i data-lucide="arrow-right" class="button-arrow"></i>
+          </a>
+        </div>
+      </article>
+    ))}
+
+    <button class="hero-arrow hero-arrow-left" aria-label="Anterior" type="button">
       <i data-lucide="chevron-left" class="arrow-icon"></i>
     </button>
-    
-    <div class="hero-content">
-      <div class="hero-left">
-        <span class="hero-subtitle">LENCERÍA & SEXSHOP</span>
-        <h1 class="hero-title">Todo lo que te hace sentir bien</h1>
-        <div class="hero-decoration">
-          <span class="decoration-line"></span>
-          <i data-lucide="heart" class="decoration-heart"></i>
-          <span class="decoration-line"></span>
-        </div>
-        <a href="/tienda" class="hero-button">
-          VER PRODUCTOS
-          <i data-lucide="arrow-right" class="button-arrow"></i>
-        </a>
-      </div>
-      <div class="hero-right">
-        <img 
-          src="/banner%20luma.png" 
-          alt="Luma Íntima - Lencería & Sexshop" 
-          class="hero-image"
-        />
-      </div>
-    </div>
-    
-    <button class="hero-arrow hero-arrow-right" aria-label="Siguiente">
+    <button class="hero-arrow hero-arrow-right" aria-label="Siguiente" type="button">
       <i data-lucide="chevron-right" class="arrow-icon"></i>
     </button>
-    
-    <div class="hero-indicators">
-      <span class="indicator active"></span>
-      <span class="indicator"></span>
-      <span class="indicator"></span>
+
+    <div class="hero-indicators" role="tablist" aria-label="Slides del banner">
+      {slides.map((_, index) => (
+        <button class={`indicator ${index === 0 ? 'active' : ''}`} data-index={index} aria-label={`Ir al slide ${index + 1}`} type="button"></button>
+      ))}
     </div>
   </div>
 </section>
 
+<script>
+  const slides = [...document.querySelectorAll('.hero-slide')];
+  const indicators = [...document.querySelectorAll('.hero-indicators .indicator')];
+  const prev = document.querySelector('.hero-arrow-left');
+  const next = document.querySelector('.hero-arrow-right');
+  let current = 0;
+  let timer;
+
+  function goTo(index: number) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+    });
+    indicators.forEach((indicator, i) => indicator.classList.toggle('active', i === current));
+    // re-create lucide icons for newly shown slide (they are already rendered)
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    timer = window.setInterval(() => goTo(current + 1), 6000);
+  }
+  function stopAutoplay() {
+    if (timer) window.clearInterval(timer);
+  }
+
+  prev?.addEventListener('click', () => { goTo(current - 1); startAutoplay(); });
+  next?.addEventListener('click', () => { goTo(current + 1); startAutoplay(); });
+  indicators.forEach((indicator) => {
+    indicator.addEventListener('click', () => { goTo(Number(indicator.dataset.index)); startAutoplay(); });
+  });
+
+  const hero = document.querySelector<HTMLElement>('.hero');
+  hero?.addEventListener('mouseenter', stopAutoplay);
+  hero?.addEventListener('mouseleave', startAutoplay);
+
+  startAutoplay();
+</script>
+
 <style>
   .hero {
     width: 100%;
-    background-color: var(--color-warm-white);
+    background-color: #e9ded1;
     padding: 0;
   }
 
   .hero-container {
     max-width: 100%;
     position: relative;
-    height: 450px;
-    display: flex;
-    align-items: center;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+    z-index: 0;
+  }
+
+  .hero-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
   }
 
   .hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    position: relative;
     height: 100%;
     width: 100%;
-    max-width: 1600px;
+    max-width: none;
     margin: 0 auto;
+    isolation: isolate;
   }
 
   .hero-left {
-    background-color: #f5f3ef;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 4rem 5rem;
+    align-items: flex-start;
+    width: 57%;
+    height: 100%;
+    padding: 4rem clamp(5rem, calc((100vw - 1600px) / 2 + 5rem), 10rem);
     gap: 1.5rem;
+    background: linear-gradient(90deg, rgba(233, 222, 209, 0.98) 0%, rgba(233, 222, 209, 0.92) 64%, rgba(233, 222, 209, 0.58) 84%, rgba(233, 222, 209, 0) 100%);
+  }
+
+  .hero-left > * {
+    position: relative;
+    z-index: 1;
   }
 
   .hero-subtitle {
@@ -87,6 +175,7 @@
     color: var(--color-soft-black);
     line-height: 1.15;
     max-width: 420px;
+    text-shadow: 0 2px 18px rgba(175, 218, 198, 0.35);
   }
 
   .hero-decoration {
@@ -112,7 +201,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background-color: var(--color-mint-primary);
+    background: linear-gradient(135deg, var(--color-mint-primary), #8fd0b5);
     color: var(--color-soft-black);
     padding: 14px 38px;
     border-radius: 50px;
@@ -123,11 +212,28 @@
     margin-top: 1rem;
     transition: all 0.3s ease;
     align-self: flex-start;
+    box-shadow: 0 8px 24px rgba(175, 218, 198, 0.55);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .hero-button:hover::after {
+    transform: translateX(100%);
   }
 
   .hero-button:hover {
     background-color: #9fcdb8;
     transform: translateX(4px);
+    box-shadow: 0 12px 30px rgba(175, 218, 198, 0.7);
   }
 
   .button-arrow {
@@ -136,15 +242,23 @@
   }
 
   .hero-right {
-    position: relative;
+    position: absolute;
+    inset: 0;
     overflow: hidden;
+    z-index: 0;
   }
 
   .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: 62% center;
+    filter: saturate(1.05) brightness(1.02);
+    transition: transform 6s ease;
+  }
+
+  .hero-slide.is-active .hero-image {
+    transform: scale(1.06);
   }
 
   .hero-arrow {
@@ -193,39 +307,39 @@
   }
 
   .indicator {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: rgba(23, 26, 24, 0.3);
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
 
   .indicator.active {
     background-color: var(--color-soft-black);
+    width: 28px;
+    border-radius: 6px;
   }
 
   @media (max-width: 968px) {
     .hero-container {
-      height: 300px;
+      height: 420px;
     }
-    
     .hero-left {
       padding: 2rem 3rem;
     }
-    
     .hero-title {
-      font-size: 38px;
+      font-size: 42px;
     }
-    
     .hero-arrow {
       width: 38px;
       height: 38px;
     }
-    
     .hero-arrow-left {
       left: 1rem;
     }
-    
     .hero-arrow-right {
       right: 1rem;
     }
@@ -233,48 +347,38 @@
 
   @media (max-width: 768px) {
     .hero-container {
-      height: auto;
+      height: 470px;
     }
-    
-    .hero-content {
-      grid-template-columns: 1fr;
-    }
-    
     .hero-left {
+      width: min(100%, 650px);
       padding: 2.5rem 2rem;
-      order: 2;
+      background: linear-gradient(90deg, rgba(233, 222, 209, 0.96) 0%, rgba(233, 222, 209, 0.86) 62%, rgba(233, 222, 209, 0.3) 100%);
     }
-    
     .hero-right {
-      order: 1;
-      height: 250px;
+      height: 100%;
     }
-    
     .hero-title {
       font-size: 36px;
       max-width: 100%;
     }
-    
     .hero-arrow {
       display: none;
     }
-    
     .hero-indicators {
       bottom: 0.75rem;
     }
   }
 
   @media (max-width: 480px) {
+    .hero-container {
+      height: 430px;
+    }
     .hero-left {
       padding: 2rem 1.5rem;
     }
-    
     .hero-title {
       font-size: 32px;
     }
-    
-    .hero-right {
-      height: 200px;
-    }
+    .hero-arrow { display: none; }
   }
 </style>

@@ -1,0 +1,25 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+---
+<AdminLayout title="Nuevo producto | Luma Íntima" active="producto">
+  <div class="dashboard-topline"><div class="dashboard-breadcrumb">LUMA ÍNTIMA <span>/</span> EDITOR</div><button id="logout-button" class="logout-button" type="button">Cerrar sesión <span>↗</span></button></div>
+  <div class="dashboard-heading"><div><p class="admin-overline">EL DETALLE IMPORTA</p><h1 id="editor-title">Nuevo producto</h1><p class="dashboard-intro">Completá la información de esta pieza.</p></div></div>
+
+  <section class="admin-card" id="product-editor">
+    <form id="product-form">
+      <input type="hidden" name="id" /><input type="hidden" name="existing_image" />
+      <label class="field-label">Nombre del producto<input name="titulo" required maxlength="100" placeholder="Ej. Conjunto encaje floral" /></label>
+      <div class="form-row"><label class="field-label">Precio<input name="precio" type="number" min="0" step="1" required placeholder="$ 24.990" /></label><label class="field-label">Precio anterior <small>opcional</small><input name="precioAnterior" type="number" min="0" step="1" placeholder="$ 29.990" /></label></div>
+      <label class="field-label">Categoría<select name="categoria" required><option value="conjuntos">Conjuntos</option><option value="bombachas">Bombachas</option><option value="bodys">Bodys</option><option value="ropa-deportiva">Ropa deportiva</option><option value="sexshop">Intimates</option><option value="medias">Medias</option><option value="boxers">Boxers</option><option value="promociones">Promociones</option></select></label>
+      <label class="field-label">Descripción<textarea name="descripcion" rows="3" placeholder="Contá qué hace especial a esta pieza..."></textarea></label>
+      <div class="form-row"><label class="field-label">Talles<input name="talles" placeholder="S, M, L, XL" /></label><label class="field-label">Colores<input name="colores" placeholder="Negro, Nude" /></label></div>
+      <div class="image-field"><label class="field-label" for="product-image">Fotografía del producto</label><label class="upload-zone" for="product-image"><span class="upload-icon">↑</span><span><b>Elegí una imagen</b><small>JPG, PNG, WebP o AVIF · máximo 6 MB</small></span><span class="upload-browse">EXPLORAR</span></label><input id="product-image" name="imagen" type="file" accept="image/png,image/jpeg,image/webp,image/avif" /><img id="image-preview" class="image-preview" alt="Vista previa del producto" hidden /></div>
+      <label class="field-label url-field">O pegá una URL de imagen<input name="imagenUrl" type="url" placeholder="https://..." /></label>
+      <fieldset class="section-selector"><legend>Publicar en secciones</legend><p>Podés elegir más de una; quitá la selección cuando quieras.</p><div class="section-options"><label class="section-choice"><input name="secciones" type="checkbox" value="novedades" /><span>✳</span> Novedades</label><label class="section-choice"><input name="secciones" type="checkbox" value="mas-vendidos" /><span>♡</span> Más vendidos</label><label class="section-choice"><input name="secciones" type="checkbox" value="promociones" /><span>✦</span> Promociones</label><label class="section-choice"><input name="secciones" type="checkbox" value="seleccion-luma" /><span>◌</span> Selección Luma</label></div></fieldset>
+      <div class="toggle-row stock-toggle"><label class="check-label"><input name="enStock" type="checkbox" checked /><span class="custom-check"></span> Disponible en el catálogo</label></div>
+      <div class="form-actions"><button id="save-button" class="primary-button" type="submit"><span>Guardar producto</span><b>↗</b></button><button id="cancel-edit" class="secondary-button" type="button" hidden>Cancelar</button></div>
+      <p id="product-message" class="form-message" role="status"></p>
+    </form>
+  </section>
+  <script>import '../../scripts/admin.ts';</script>
+</AdminLayout>

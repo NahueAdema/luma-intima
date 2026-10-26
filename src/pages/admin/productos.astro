@@ -1,0 +1,15 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+---
+<AdminLayout title="Productos | Luma Íntima" active="productos">
+  <div class="dashboard-topline"><div class="dashboard-breadcrumb">LUMA ÍNTIMA <span>/</span> PRODUCTOS</div><button id="logout-button" class="logout-button" type="button">Cerrar sesión <span>↗</span></button></div>
+  <div class="dashboard-heading"><div><p class="admin-overline">TU SELECCIÓN</p><h1>Inventario <em>en foco.</em></h1><p class="dashboard-intro">Una mirada a todas tus piezas.</p></div><a class="primary-button new-product-link" href="/admin/producto/"><span>＋ &nbsp; Nuevo producto</span></a></div>
+
+  <section class="admin-card">
+    <div class="list-heading"><div><p class="admin-overline">CATÁLOGO</p><h2>Productos <span id="product-count">0</span></h2><p class="section-hint">Buscá y administrá tus piezas.</p></div><button id="refresh-button" class="refresh-button" type="button" aria-label="Actualizar productos">↻</button></div>
+    <label class="inventory-search"><span>⌕</span><input id="inventory-search" type="search" placeholder="Buscar por nombre o categoría" /></label>
+    <div id="product-list" class="product-list"><div class="empty-state"><span>✳</span><b>Preparando tu catálogo</b><small>Las piezas aparecerán aquí.</small></div></div>
+  </section>
+  <p id="product-message" class="form-message" role="status"></p>
+</AdminLayout>
+<script>import '../../scripts/admin.ts';</script>

@@ -1,0 +1,19 @@
+---
+import ProductListing from '../../components/ProductListing.astro';
+
+export function getStaticPaths() {
+  const collections: Record<string, { title: string; subtitle: string; description: string }> = {
+    conjuntos: { title: 'Conjuntos', subtitle: 'El match perfecto empieza con vos.', description: 'Texturas suaves, encajes delicados y combinaciones que se sienten tan bien como se ven.' },
+    bombachas: { title: 'Bombachas', subtitle: 'Comodidad, todos los días.', description: 'Básicos irresistibles y detalles sutiles para acompañarte con suavidad.' },
+    bodys: { title: 'Bodys', subtitle: 'Una pieza. Toda tu actitud.', description: 'Siluetas que abrazan, materiales nobles y un toque de confianza extra.' },
+    'ropa-deportiva': { title: 'Movimiento', subtitle: 'Suave con vos, en cada movimiento.', description: 'Prendas cómodas para tus días activos y tus momentos de pausa.' },
+    sexshop: { title: 'Intimates', subtitle: 'Un espacio para descubrirte.', description: 'Elegí sin apuro, con discreción y a tu manera.' },
+    medias: { title: 'Medias', subtitle: 'El detalle que completa todo.', description: 'Texturas livianas y terminaciones delicadas para sumar a tu colección.' },
+    boxers: { title: 'Boxers', subtitle: 'Comodidad que se nota.', description: 'Cortes cuidados y telas suaves, pensados para acompañar cada día.' },
+  };
+  return Object.entries(collections).map(([slug, copy]) => ({ params: { slug }, props: { ...copy, category: slug } }));
+}
+
+const { title, subtitle, description, category } = Astro.props;
+---
+<ProductListing title={title} subtitle={subtitle} description={description} category={category} />

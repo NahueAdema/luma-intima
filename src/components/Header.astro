@@ -1,12 +1,12 @@
 <header class="header">
   <div class="header-container">
-    <nav class="nav-left">
+    <nav class="nav-left" id="main-nav" aria-label="Navegación principal">
       <ul class="nav-list">
         <li class="nav-item">
-          <a href="/" class="nav-link nav-link-active">INICIO</a>
+          <a href="/" class="nav-link">INICIO</a>
         </li>
-        <li class="nav-item">
-          <a href="/tienda" class="nav-link">TIENDA</a>
+        <li class="nav-item nav-collection-item">
+          <details class="nav-dropdown"><summary class="nav-link">CATEGORÍAS</summary><div class="nav-dropdown-panel"><a href="/tienda/">Todo el catálogo <span>↗</span></a><a href="/tienda/mas-vendidos/">Más vendidos <span>↗</span></a><a href="/tienda/novedades/">Novedades <span>↗</span></a><a href="/tienda/promociones/">Promociones <span>↗</span></a><a href="/tienda/conjuntos/">Conjuntos <span>↗</span></a><a href="/tienda/bodys/">Bodys <span>↗</span></a><a href="/tienda/bombachas/">Bombachas <span>↗</span></a></div></details>
         </li>
         <li class="nav-item">
           <a href="/nosotras" class="nav-link">NOSOTRAS</a>
@@ -35,29 +35,49 @@
         <input type="text" class="search-input" placeholder="Buscar productos..." />
         <i data-lucide="search" class="search-icon"></i>
       </div>
-      <button class="icon-button" aria-label="Mi cuenta">
+      <a class="icon-button" aria-label="Administración" href="/admin/" title="Panel de administración">
         <i data-lucide="user" class="header-icon"></i>
-      </button>
-      <button class="icon-button cart-button" aria-label="Carrito de compras">
-        <i data-lucide="shopping-bag" class="header-icon"></i>
-        <span class="cart-badge">0</span>
-      </button>
+      </a>
+      <a class="icon-button" aria-label="Mis favoritos" href="/tienda/favoritos/" title="Mis favoritos"><i data-lucide="heart" class="header-icon"></i></a>
     </div>
   </div>
 
-  <button class="mobile-menu-button" aria-label="Menú" id="mobileMenuBtn">
+  <button class="mobile-menu-button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav" id="mobileMenuBtn">
     <i data-lucide="menu" class="header-icon"></i>
   </button>
 </header>
 
+<script>
+  const menuButton = document.getElementById('mobileMenuBtn');
+  const nav = document.querySelector('.nav-left');
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll<HTMLAnchorElement>('.nav-list > .nav-item > a').forEach((link) => {
+    const target = new URL(link.href).pathname.replace(/\/$/, '') || '/';
+    if (currentPath === target) link.classList.add('nav-link-active');
+  });
+  if (currentPath.startsWith('/tienda')) document.querySelector('.nav-dropdown summary')?.classList.add('nav-link-active');
+  menuButton?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('mobile-open') ?? false;
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+  document.querySelector<HTMLInputElement>('.search-input')?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      const term = (event.currentTarget as HTMLInputElement).value.trim();
+      window.location.href = `/tienda/${term ? `?q=${encodeURIComponent(term)}` : ''}`;
+    }
+  });
+</script>
+
 <style>
   .header {
-    background-color: var(--color-mint-primary);
+    background: linear-gradient(180deg, #bfe3d2 0%, var(--color-mint-primary) 100%);
     height: 130px;
     display: flex;
     align-items: center;
     position: relative;
     border-bottom: 1px solid rgba(23, 26, 24, 0.1);
+    box-shadow: 0 4px 24px rgba(175, 218, 198, 0.35);
   }
 
   .header-container {
@@ -82,6 +102,9 @@
   }
 
   .nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -89,8 +112,10 @@
     font-weight: 500;
     position: relative;
     transition: opacity 0.3s ease;
-    padding-bottom: 4px;
+    padding: 0;
   }
+
+  .nav-dropdown{position:relative;display:flex;align-items:center}.nav-dropdown summary{list-style:none;cursor:pointer;line-height:1}.nav-dropdown summary::-webkit-details-marker{display:none}.nav-dropdown-panel{position:absolute;z-index:10;top:calc(100% + 18px);left:-18px;width:230px;padding:10px;background:#fafaf7;box-shadow:0 16px 38px #19251d1c;border:1px solid #dce7df;display:grid;opacity:0;visibility:hidden;transform:translateY(5px);transition:.18s}.nav-dropdown[open] .nav-dropdown-panel{opacity:1;visibility:visible;transform:none}.nav-dropdown-panel a{display:flex;justify-content:space-between;padding:10px 11px;font-size:10px;letter-spacing:.03em;color:#445247}.nav-dropdown-panel a:hover{background:#edf5ef}.nav-dropdown-panel span{color:#83a18b}
 
   .nav-link:hover {
     opacity: 0.7;
@@ -99,7 +124,7 @@
   .nav-link-active::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     left: 0;
     width: 100%;
     height: 1px;
@@ -127,6 +152,7 @@
     font-weight: 300;
     color: var(--color-soft-black);
     letter-spacing: 0.02em;
+    text-shadow: 0 0 18px rgba(175, 218, 198, 0.5);
   }
 
   .logo-intima-wrapper {
@@ -300,13 +326,16 @@
     }
     
     .header-container {
-      grid-template-columns: auto 1fr auto;
-      padding: 0 3.5rem 0 1rem;
+      display: flex;
+      justify-content: center;
+      padding: 0 88px;
+      gap: 0;
     }
     
     .nav-left {
       display: none;
     }
+    .nav-left.mobile-open{display:block;position:absolute;z-index:20;top:100%;left:0;right:0;padding:10px 20px 18px;background:#f9fbf8;box-shadow:0 18px 30px #17221a1a}.nav-left.mobile-open .nav-list{display:grid;gap:0;align-items:stretch}.nav-left.mobile-open .nav-item{display:block;padding:3px 0;border-bottom:1px solid #e4ebe5}.nav-left.mobile-open .nav-link{min-height:42px;width:100%;font-size:11px;line-height:1}.nav-left.mobile-open .nav-dropdown{display:block}.nav-left.mobile-open .nav-dropdown-panel{position:static;display:grid;width:100%;box-shadow:none;border:0;padding:4px 0 8px 14px;opacity:1;visibility:visible;transform:none;background:transparent}.nav-left.mobile-open .nav-dropdown:not([open]) .nav-dropdown-panel{display:none}.nav-left.mobile-open .nav-dropdown-panel a{min-height:38px;align-items:center}
     
     .logo {
       justify-self: center;
@@ -325,7 +354,11 @@
     }
     
     .nav-right {
-      gap: 0.5rem;
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      gap: 0.3rem;
     }
     
     .search-container {
@@ -334,6 +367,10 @@
     
     .mobile-menu-button {
       display: flex;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      z-index: 2;
     }
   }
 </style>

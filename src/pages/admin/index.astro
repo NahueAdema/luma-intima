@@ -1,0 +1,89 @@
+---
+import '../../styles/global.css';
+import '../../styles/admin.css';
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#f6f7f2" />
+  <title>Administración | Luma Íntima</title>
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="admin-page" data-admin-page="overview">
+  <main class="admin-shell">
+    <header class="admin-topbar">
+      <a class="admin-brand" href="/" aria-label="Luma Íntima, volver al inicio">
+        <span class="brand-seal">L</span><span class="brand-wordmark"><b>Luma</b><small>Í N T I M A</small></span>
+      </a>
+      <div class="topbar-right"><span class="topbar-label"><i></i> ESPACIO PRIVADO</span><a class="store-link" href="/">Ver tienda <span>↗</span></a></div>
+    </header>
+
+    <section id="login-panel" class="login-layout">
+      <div class="login-story">
+        <p class="admin-overline">EL UNIVERSO LUMA</p>
+        <h1>Un espacio<br />para <em>crear.</em></h1>
+        <p class="login-intro">Cuidá cada detalle de tu colección desde un solo lugar. Tu tienda, a tu manera.</p>
+        <div class="login-signature"><span>✳</span><span>HECHO CON CUIDADO<br />EN BUENOS AIRES</span></div>
+      </div>
+      <div class="login-card">
+        <span class="login-card-mark">01 <i>—</i> ACCESO</span>
+        <h2>Bienvenida</h2><p class="login-card-copy">Ingresá a tu espacio de administración.</p>
+        <form id="login-form">
+          <label>Email<input name="email" type="email" autocomplete="username" required placeholder="tu@email.com" /></label>
+          <label>Contraseña<input name="password" type="password" autocomplete="current-password" required placeholder="Tu contraseña" /></label>
+          <button class="primary-button" type="submit"><span>Ingresar al panel</span><b>↗</b></button>
+          <p id="login-error" class="form-message" role="alert"></p>
+        </form>
+        <p class="login-help">El usuario administrador se crea desde Supabase Auth.</p>
+      </div>
+    </section>
+
+    <section id="dashboard" class="admin-dashboard" hidden>
+      <aside class="admin-sidebar">
+        <div class="sidebar-caption">MENÚ PRINCIPAL</div>
+        <a class="sidebar-link active" href="/admin/"><span class="sidebar-icon">▦</span> Resumen</a>
+        <a class="sidebar-link" href="/admin/productos/"><span class="sidebar-icon">◇</span> Productos</a>
+        <a class="sidebar-link" href="/admin/producto/"><span class="sidebar-icon">＋</span> Nuevo producto</a>
+        <div class="sidebar-caption sidebar-caption-spaced">TU TIENDA</div>
+        <a class="sidebar-link" href="/tienda/"><span class="sidebar-icon">↗</span> Ver catálogo</a>
+        <a class="sidebar-link" href="/tienda/mas-vendidos/"><span class="sidebar-icon">✳</span> Más vendidos</a>
+        <div class="sidebar-note"><span>✳</span><p>Pequeños detalles,<br /><i>grandes momentos.</i></p></div>
+      </aside>
+
+      <div class="dashboard-main" id="overview">
+        <div class="dashboard-topline"><div class="dashboard-breadcrumb">LUMA ÍNTIMA <span>/</span> ADMINISTRACIÓN</div><button id="logout-button" class="logout-button" type="button">Cerrar sesión <span>↗</span></button></div>
+        <div class="dashboard-heading"><div><p class="admin-overline">GESTIÓN DE TIENDA</p><h1>Tu colección, <em>en foco.</em></h1><p class="dashboard-intro">Productos, precios e imágenes en un solo lugar.</p></div><a class="primary-button new-product-link" href="/admin/producto/"><span>＋ &nbsp; Nuevo producto</span></a></div>
+
+        <div class="stats-grid" aria-label="Resumen de inventario">
+          <article class="stat-card stat-highlight"><span class="stat-label">EN CATÁLOGO</span><b id="stat-products">0</b><small>productos en total</small><span class="stat-ornament">✳</span></article>
+          <article class="stat-card"><span class="stat-label">DISPONIBLES</span><b id="stat-stock">0</b><small>listos para elegir</small><span class="stat-mini-icon">◌</span></article>
+          <article class="stat-card"><span class="stat-label">DESTACADOS</span><b id="stat-featured">0</b><small>favoritos Luma</small><span class="stat-mini-icon">✧</span></article>
+          <article class="stat-card"><span class="stat-label">NOVEDADES</span><b id="stat-new">0</b><small>recién llegados</small><span class="stat-mini-icon">↗</span></article>
+        </div>
+
+        <div class="dashboard-layout">
+          <section class="admin-card">
+            <div class="card-heading"><div><p class="admin-overline">ACCESOS RÁPIDOS</p><h2>Tu espacio</h2><p class="section-hint">Gestioná tu catálogo desde las secciones.</p></div><span class="editor-flower">✳</span></div>
+            <div class="form-actions">
+              <a class="primary-button" href="/admin/productos/" style="justify-content:center"><span>Ver productos</span><b>↗</b></a>
+              <a class="secondary-button" href="/admin/producto/" style="justify-content:center">Nuevo producto</a>
+            </div>
+          </section>
+          <section class="admin-card">
+            <div class="card-heading"><div><p class="admin-overline">CONSEJO</p><h2>Pequeños detalles</h2><p class="section-hint">Mantené fotos claras y descripciones cálidas.</p></div><span class="editor-flower">✳</span></div>
+            <p style="font-size:13px;color:#6f7a72;line-height:1.8">Consejo: usá fotos claras, con buena luz y fondo neutro. Imágenes muy pesadas tardan más en cargar; ideal menos de 1 MB. Podés subir la foto desde el formulario de producto.</p>
+          </section>
+        </div>
+        <footer class="dashboard-footer"><span>✳</span> Luma Íntima <i>·</i> Hecho con cuidado en Buenos Aires</footer>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+<script>import '../../scripts/admin.ts';</script>
